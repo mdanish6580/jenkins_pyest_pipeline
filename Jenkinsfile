@@ -35,7 +35,7 @@ pipeline {
 
         stage('Post-build Actions') {
             steps {
-                junit 'test/test-results.xml'  // Jenkins will look for file at path "test/test-results.xml"
+                junit 'tests/test-results.xml'  // Jenkins will look for file at path "test/test-results.xml"
             }
         }
     }
