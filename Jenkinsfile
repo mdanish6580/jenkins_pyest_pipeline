@@ -23,6 +23,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Build') {
+            steps {
+                script {
+                    sh ". venv/bin/activate && python -m src/calculator.py"
+                }
+            }
+        }
         
         stage('Run Tests') {
             steps {
@@ -37,6 +45,6 @@ pipeline {
             steps {
                 junit skipPublishingChecks: true, testResults: '**/test-results.xml' // Jenkins will look for files starting with 'test-' and ending with '.xml'
             }
-        }
+        }     
     }
 }
