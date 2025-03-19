@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // Run the tests with pytest
-                    sh ". venv/bin/activate && pytest --maxfail=1 --disable-warnings -q"
+                    sh ". venv/bin/activate && pytest --maxfail=1 --disable-warnings -q --junitxml=test-results.xml"
                 }
             }
         }
@@ -39,12 +39,6 @@ pipeline {
                 junit '**/test-*.xml'  // Jenkins will look for files starting with 'test-' and ending with '.xml'
             }
         }
-    }
 
-    post {
-        always {
-            // Clean up the environment (optional)
-            cleanWs()
         }
-    }
 }
