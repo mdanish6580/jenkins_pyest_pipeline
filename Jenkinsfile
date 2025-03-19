@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // Run the tests with pytest
-                    sh ". venv/bin/activate && pytest pytest --no-header -v --maxfail=1 --disable-warnings -q --junitxml=test-results.xml"
+                    sh ". venv/bin/activate && pytest --no-header -v --maxfail=1 --disable-warnings -q --junitxml=test-results.xml"
                 }
             }
         }
