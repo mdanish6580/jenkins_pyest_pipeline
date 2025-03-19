@@ -35,7 +35,7 @@ pipeline {
 
         stage('Post-build Actions') {
             steps {
-                junit '**/test-results.xml'  // Jenkins will look for files starting with 'test-' and ending with '.xml'
+                junit skipPublishingChecks: true, testResults: '**/test-results.xml' // Jenkins will look for files starting with 'test-' and ending with '.xml'
             }
         }
     }
