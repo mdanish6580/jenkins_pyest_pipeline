@@ -3,25 +3,23 @@ pipeline {
 
     environment {
         // Define your Python version (adjust if needed)
-        PYTHON_VERSION = 'python3.10'
+        PYTHON_VERSION = 'python3'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from version control
-                checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mdanish6580/jenkins_pyest_pipeline.git']]])
             }
         }
         
         stage('Set up Python Environment') {
             steps {
                 script {
-                    // Set up Python environment
-                    sh "${PYTHON_VERSION} -m venv venv"   // Create a virtual environment
-                    sh ". venv/bin/activate"              // Activate the virtual environment
-                    sh "pip install --upgrade pip"        // Upgrade pip
-                    sh "pip install -r requirements.txt"  // Install dependencies (ensure you have a requirements.txt)
+                    sh "${PYTHON_VERSION} -m venv venv"  // Create virtual environment
+                    sh ". venv/bin/activate"   // Activate the virtual environment
+                    sh "venv/bin/pip install --upgrade pip"  // Upgrade pip within the venv
+                    sh "venv/bin/pip install -r requirements.txt"  // Install dependencies
                 }
             }
         }
