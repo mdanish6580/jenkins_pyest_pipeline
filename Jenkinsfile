@@ -23,14 +23,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Build') {
-            steps {
-                script {
-                    sh ". venv/bin/activate && python -m src/calculator.py"
-                }
-            }
-        }
         
         stage('Run Tests') {
             steps {
